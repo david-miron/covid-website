@@ -5,8 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+//create trigger to resizeEnd event     
+$(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function() {
+        $(this).trigger('resizeEnd');
+    }, 500);
+});
+
+//redraw graph when window resize is completed  
+$(window).on('resizeEnd', function() {
+    drawChart(data);
+});
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" language="javascript">
 // Load google charts
 google.charts.load('current', {'packages':['line']});
@@ -28,19 +44,19 @@ function drawChart() {
         ["Mar 9",  3, 0],
         ["Mar 10",  5, 0],
         ["Mar 11",  145,  0],
-        ["Mar 12",  62,  .0206],
-        ["Mar 13",  84, .1129],
-        ["Mar 14",  99, .1309],
-        ["Mar 15", 49, .1414],
-        ["Mar 16",  295,  .3265],
-        ["Mar 17",  229,  .0441],
-        ["Mar 18",  345,  .0873],
-        ["Mar 19",  473,  .1072],
-        ["Mar 20",  1049,  .0791],
-        ["Mar 21",  1295,  .0795],
-        ["Mar 22",  1306,  .0827],
-        ["Mar 23",  1796,  .0919],
-        ["Mar 24",  2255,  .0918],
+        ["Mar 12",  62,  2.06],
+        ["Mar 13",  84, 11.29],
+        ["Mar 14",  99, 13.09],
+        ["Mar 15", 49, 14.14],
+        ["Mar 16",  295,  32.65],
+        ["Mar 17",  229,  4.41],
+        ["Mar 18",  345,  8.73],
+        ["Mar 19",  473,  10.72],
+        ["Mar 20",  1049,  7.91],
+        ["Mar 21",  1295,  7.95],
+        ["Mar 22",  1306,  8.27],
+        ["Mar 23",  1796,  9.19],
+        ["Mar 24",  2255,  9.18],
       ]);
 
   var options = {
@@ -48,12 +64,18 @@ function drawChart() {
           title: '% of Daily Tests Positive',
           subtitle: 'Holder'
         },
-        width: 850,
+        width: "100%",
         height: 500,
-        vAxes: {
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:2500,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
                   1: {viewWindowMode:'explicit',
                       viewWindow:{
-                                  max:1,
+                                  max:100,
                                   min:0
                                   },
                       gridlines: {color: 'transparent'},
@@ -68,10 +90,14 @@ function drawChart() {
         //   1: {axis: 'Percent'}
         // }
       };
+  function resize() {
+    var chart = new google.charts.Line(document.getElementById('piechart'));
+    chart.draw(data, google.charts.Line.convertOptions(options));
+  }
+  window.onload = resize();
+  window.onresize = resize;
+      
 
-      var chart = new google.charts.Line(document.getElementById('piechart'));
-
-      chart.draw(data, google.charts.Line.convertOptions(options));
 }
 </script>
 
