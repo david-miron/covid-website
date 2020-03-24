@@ -1,136 +1,261 @@
-<!DOCTYPE HTML>
-<!--
-	Projection by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>David Miron</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body>
+<title>COVID-19 in Pennsylvania</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="index.html" class="logo"><strong>Projection</strong> by TEMPLATED</a>
-					<nav id="nav">
-						<a href="index.html">Home</a>
-						<a href="generic.html">Generic</a>
-						<a href="elements.html">Elements</a>
-					</nav>
-					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-				</div>
-			</header>
+<script type="text/javascript" language="javascript">
+// Load google charts
+google.charts.load('current', {'packages':['line']});
+google.charts.setOnLoadCallback(drawChart);
 
-		<!-- Banner -->
-			<section id="banner">
-				<div class="inner">
-					<header>
-						<h1>Welcome to Projection</h1>
-					</header>
+// Draw the chart and set the chart values
+function drawChart() {
 
-					<div class="flex ">
+      var data = new google.visualization.DataTable();
 
-						<div>
-							<span class="icon fa-car"></span>
-							<h3>Aliquam</h3>
-							<p>Suspendisse amet ullamco</p>
-						</div>
+      data.addColumn('string', 'Date');
+      data.addColumn('number', 'Tests Reported');
+      data.addColumn('number', '% of Tests Positive');
 
-						<div>
-							<span class="icon fa-camera"></span>
-							<h3>Elementum</h3>
-							<p>Class aptent taciti ad litora</p>
-						</div>
+      data.addRows([
+        ["Mar 6", 0, 0],
+        ["Mar 7",  0, 0],
+        ["Mar 8",  2, 0],
+        ["Mar 9",  3, 0],
+        ["Mar 10",  5, 0],
+        ["Mar 11",  145,  0],
+        ["Mar 12",  62,  .0206],
+        ["Mar 13",  84, .1129],
+        ["Mar 14",  99, .1309],
+        ["Mar 15", 49, .1414],
+        ["Mar 16",  295,  .3265],
+        ["Mar 17",  229,  .0441],
+        ["Mar 18",  345,  .0873],
+        ["Mar 19",  473,  .1072],
+        ["Mar 20",  1049,  .0791],
+        ["Mar 21",  1295,  .0795],
+        ["Mar 22",  1306,  .0827],
+        ["Mar 23",  1796,  .0919]
+      ]);
 
-						<div>
-							<span class="icon fa-bug"></span>
-							<h3>Ultrices</h3>
-							<p>Nulla vitae mauris non felis</p>
-						</div>
+  var options = {
+        chart: {
+          title: '% of Daily Tests Positive',
+          subtitle: 'Holder'
+        },
+        width: 850,
+        height: 500,
+        vAxes: {
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:1,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:0},
+                   1:{targetAxisIndex:1},
+                  },
+        // series: {
+        //   // Gives each series an axis name that matches the Y-axis below.
+        //   0: {axis: 'Tests'},
+        //   1: {axis: 'Percent'}
+        // }
+      };
 
-					</div>
+      var chart = new google.charts.Line(document.getElementById('piechart'));
 
-					<footer>
-						<a href="#" class="button">Get Started</a>
-					</footer>
-				</div>
-			</section>
+      chart.draw(data, google.charts.Line.convertOptions(options));
+}
+</script>
 
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
 
-		<!-- Three -->
-			<section id="three" class="wrapper align-center">
-				<div class="inner">
-					<div class="flex flex-2">
-						<article>
-							<div class="image round">
-								<img src="images/pic01.jpg" alt="Pic 01" />
-							</div>
-							<header>
-								<h3>Lorem ipsum<br /> dolor amet nullam</h3>
-							</header>
-							<p>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in diam sed arcu. Cras<br />consequat  egestas augue vulputate.</p>
-							<footer>
-								<a href="#" class="button">Learn More</a>
-							</footer>
-						</article>
-						<article>
-							<div class="image round">
-								<img src="images/pic02.jpg" alt="Pic 02" />
-							</div>
-							<header>
-								<h3>Sed feugiat<br /> tempus adipicsing</h3>
-							</header>
-							<p>Pellentesque fermentum dolor. Aliquam quam lectus<br />facilisis auctor, ultrices ut, elementum vulputate, nunc<br /> blandit ellenste egestagus commodo.</p>
-							<footer>
-								<a href="#" class="button">Learn More</a>
-							</footer>
-						</article>
-					</div>
-				</div>
-			</section>
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Tracking COVID-19 in Pennsylvania</b></h1>
+  <p>Created by <span class="w3-tag">David Miron</span></p>
+</header>
 
-					<h3>Get in touch</h3>
+<!-- Grid -->
+<div class="w3-row">
 
-					<form action="#" method="post">
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
+    <div class="w3-container">
+      <h3><b>Intro</b></h3>
+      <h5>Last updated on, <span class="w3-opacity">March 24, 2020</span></h5>
+    </div>
 
-						<div class="field half first">
-							<label for="name">Name</label>
-							<input name="name" id="name" type="text" placeholder="Name">
-						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input name="email" id="email" type="email" placeholder="Email">
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
-						</div>
-						<ul class="actions">
-							<li><input value="Send Message" class="button alt" type="submit"></li>
-						</ul>
-					</form>
+    <div class="w3-container">
+      <p>As I am quarantined in PA, I have been tracking the development of COVID-19 in the state. All data is pulled from <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">health.pa.gov</a> on a daily basis. All opinions are my own. This website is mainly to serve as a place for me to organize my findings, but it can also provide a source of truth for others in the state. Stay safe and healthy!</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+        </div>
+        <div class="w3-col m4 w3-hide-small">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
 
-					<div class="copyright">
-						&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
-					</div>
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="piechart"></div>
+    </div>
+  </div>
 
-				</div>
-			</footer>
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 3 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">March 24, 2020</span></h5>
+    </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <div class="w3-container">
+      <p>TBD</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
+    </div>
+  </div>
 
-	</body>
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 2 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">March 23, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>1796 tests today. 165 positive. 9% of all tests positive up from 8% yesterday. Monroe and Montgomery counties fasting growing positive cases with 42 positive tests today in both. 6 total deaths in PA now - 2 in Northampton county.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 1 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">March 22, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>1306 tests in PA today. 108 positive. 33 of 68 counties are now testing in PA. Those counties account for 86% of the population. Montgomery and Philadelphia with 2 times the positive cases than the next closest county down with 87 and 91, respectively.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
+    </div>
+  </div>
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="./assets/headshot1.jpg" style="width:10%">
+    <div class="w3-container w3-white">
+      <h4><b>David Miron</b></h4>
+      <p>For any questions, comments or corrections please email david@miron.us</p>
+    </div>
+  </div><hr>
+  
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Helpful Links</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">PA Tracking</span><br>
+        <span><a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">health.pa.gov</a></span>
+      </li>
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">US Tracking Data</span><br>
+        <span><a href="https://covidtracking.com/">COVID Tracking Project</a></span>
+      </li> 
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">US Surveillance Dashboard</span><br>
+        <span><a href=http://ncov.bii.virginia.edu/dashboard/>UVA Biocomplexity Institute</a></span>
+      </li>   
+      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+<!--         <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">TBD</span><br>
+        <span>Place Holder</span>
+      </li>  
+    </ul>
+  </div>
+  <hr> 
+ 
+  <!-- Labels / tags -->
+<!--   <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+    </p>
+    </div>
+  </div> -->
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <!-- <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button> -->
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
 </html>
