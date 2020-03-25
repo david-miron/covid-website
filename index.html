@@ -57,18 +57,21 @@ function drawChart() {
         ["Mar 22",  1306,  .0827],
         ["Mar 23",  1796,  .0919],
         ["Mar 24",  2255,  .0918],
+        ["Mar 25",  2826,  .0977],
       ]);
 
   var options = {
+        legend: { position: 'bottom' },
         chart: {
           title: '% of Daily Tests Positive',
-          subtitle: 'Holder'
+          subtitle: 'This chart shows that as testing has increased, there is still a steady growth rate in positive cases. This is a great sign!',
+          isStacked: "true"
         },
-        width: "100%",
+        width: 850,
         height: 500,
         vAxes: {  0: {viewWindowMode:'explicit',
                       viewWindow:{
-                                  max:2500,
+                                  max:3000,
                                   min:0
                                   },
                       gridlines: {color: 'transparent'},
@@ -91,9 +94,44 @@ function drawChart() {
         //   1: {axis: 'Percent'}
         // }
       };
+
+
+      var data2 = new google.visualization.DataTable();
+
+      data2.addColumn('string', 'Date');
+      data2.addColumn('number', 'Total Positive Cases Montgomery County');
+      data2.addColumn('number', 'Total Positive Cases Philadelphia County');
+
+      data2.addRows([
+        ["Mar 19",  47,  33],
+        ["Mar 20",  59,  42],
+        ["Mar 21",  71,  69],
+        ["Mar 22",  87,  91],
+        ["Mar 23",  129,  128],
+        ["Mar 24",  144,  177],
+        ["Mar 25",  172,  257],
+      ]);
+
+  var options2 = {
+        colors: ['#6eeb34', '#8113e8'],
+        chart: {
+          title: 'Total Positive Cases Montgomery and Philadelphia County',
+          subtitle: 'This chart shows the raw count of positive cases in these counties.'
+        },
+        width: 850,
+        height: 500,
+        // series: {
+        //   // Gives each series an axis name that matches the Y-axis below.
+        //   0: {axis: 'Tests'},
+        //   1: {axis: 'Percent'}
+        // }
+      };
+
   function resize() {
     var chart = new google.charts.Line(document.getElementById('piechart'));
+    var chart2 = new google.charts.Line(document.getElementById('piechart2'));
     chart.draw(data, google.charts.Line.convertOptions(options));
+    chart2.draw(data2, google.charts.Line.convertOptions(options2));
   }
   window.onload = resize();
   window.onresize = resize;
@@ -127,7 +165,7 @@ and is wrapped around the whole page content, except for the footer in this exam
     <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
     <div class="w3-container">
       <h3><b>Intro</b></h3>
-      <h5>Last updated on, <span class="w3-opacity">March 24, 2020</span></h5>
+      <h5>Page last updated on, <span class="w3-opacity">March 25, 2020</span></h5>
     </div>
 
     <div class="w3-container">
@@ -142,9 +180,36 @@ and is wrapped around the whole page content, except for the footer in this exam
   </div>
   <hr>
 
+  <!-- Blog entry -->
   <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 4 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">March 25, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>2826 tests in PA today. 276 positive. 44 of 68 counties are now testing in PA. Those counties account for 92% of the population. Philadelphia recorded it's first death due to the virus today. Philadelphia has the most confirmed cases at 257. Only three counties reported more than 20 new cases today: Allegheny County (30), Montgomery County (28), and Philadelphia County (80). It is still early, but all of the numbers for PA are positive when compared to New York.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
+    </div>
+  </div>
+    
+    <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
   <div id="piechart"></div>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="piechart2"></div>
     </div>
   </div>
 
@@ -247,9 +312,14 @@ and is wrapped around the whole page content, except for the footer in this exam
       </li>   
       <li class="w3-padding-16 w3-hide-medium w3-hide-small">
 <!--         <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
- -->        <span class="w3-large">TBD</span><br>
-        <span>Place Holder</span>
+ -->        <span class="w3-large">Tracking Mobility Using Smart Phone Data</span><br>
+        <span><a href=https://www.unacast.com/covid19/social-distancing-scoreboard/>Unacast (scroll down and select PA)</a></span>
       </li>  
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Median Age by County in PA</span><br>
+        <span><a href="  https://mapmaker2.millersville.edu/pamaps/MedianAge/">Millersville University</a></span>
+      </li>
     </ul>
   </div>
   <hr> 
