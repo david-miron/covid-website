@@ -67,7 +67,7 @@ function drawChart() {
           subtitle: 'This chart shows that as testing has increased, there is still a steady growth rate in positive cases. This is a great sign!',
           isStacked: "true"
         },
-        width: 850,
+        width: "100%",
         height: 500,
         vAxes: {  0: {viewWindowMode:'explicit',
                       viewWindow:{
@@ -118,7 +118,7 @@ function drawChart() {
           title: 'Total Positive Cases Montgomery and Philadelphia County',
           subtitle: 'This chart shows the raw count of positive cases in these counties.'
         },
-        width: 850,
+        width: "100%",
         height: 500,
         // series: {
         //   // Gives each series an axis name that matches the Y-axis below.
@@ -128,8 +128,10 @@ function drawChart() {
       };
 
   function resize() {
+
     var chart = new google.charts.Line(document.getElementById('piechart'));
     var chart2 = new google.charts.Line(document.getElementById('piechart2'));
+
     chart.draw(data, google.charts.Line.convertOptions(options));
     chart2.draw(data2, google.charts.Line.convertOptions(options2));
   }
