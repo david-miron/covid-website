@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162707788-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162707788-1');
+</script>
+</head>
 <title>COVID-19 in Pennsylvania</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,6 +77,7 @@ function drawChart() {
         ["Mar 31",  4624,  .1635],
         ["Apr 1",  5744,  .1675],
         ["Apr 2",  6482,  .1868],
+        ["Apr 3",  8420,  .1897],
       ]);
 
   var options = {
@@ -79,7 +91,7 @@ function drawChart() {
         height: 500,
         vAxes: {  0: {viewWindowMode:'explicit',
                       viewWindow:{
-                                  max:7000,
+                                  max:8000,
                                   min:0
                                   },
                       gridlines: {color: 'transparent'},
@@ -126,6 +138,7 @@ function drawChart() {
         ["Mar 31",  570,  1197],
         ["Apr 1",  649,  1478],
         ["Apr 2",  735,  1852],
+        ["Apr 3",  875,  2284],
       ]);
 
   var options2 = {
@@ -206,7 +219,7 @@ and is wrapped around the whole page content, except for the footer in this exam
     <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
     <div class="w3-container">
       <h3><b>Intro</b></h3>
-      <h5>Page last updated on, <span class="w3-opacity">April 2, 2020</span></h5>
+      <h5>Page last updated on, <span class="w3-opacity">April 3, 2020</span></h5>
     </div>
 
     <div class="w3-container">
@@ -226,11 +239,11 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
       <h3><b>Day 12 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">April 2, 2020</span></h5>
+      <h5>Daily Update, <span class="w3-opacity">April 3, 2020</span></h5>
     </div>
 
     <div class="w3-container">
-      <p>6482 tests reported in PA today. 1211 positive. 16 deaths were reported today. 90 total deaths have now been reported in the state. There have been 730 hospitilizaitons in the state. 78% of the hospitilizations are adults 50+. Of the 7016 positive cases in the state, 41% are among adults 25-49.</p>
+      <p>7401 tests reported in PA today. 1404 positive. 12 deaths were reported today. There were 122 hospitilizaitons reported in the state. We are likely to witness increased growth of the number of positive cases for the next week at least. Currently 0.14% of Philadelphia County population has tested positive for Corona.</p>
       <div class="w3-row">
         <div class="w3-col m8 s12">
 <!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
@@ -258,6 +271,27 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
   <div id="piechart2"></div>
+    </div>
+  </div>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 12 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">April 2, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>6482 tests reported in PA today. 1211 positive. 16 deaths were reported today. 90 total deaths have now been reported in the state. There have been 730 hospitilizaitons in the state. 78% of the hospitilizations are adults 50+. Of the 7016 positive cases in the state, 41% are among adults 25-49.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
     </div>
   </div>
 
