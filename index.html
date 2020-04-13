@@ -87,6 +87,7 @@ function drawChart() {
         ["Apr 10",  7417,  .2361],
         ["Apr 11",  7134,  .2349],
         ["Apr 12",  4737,  .2486],
+        ["Apr 13",  4902,  .2787],
       ]);
 
   var options = {
@@ -157,56 +158,10 @@ function drawChart() {
         ["Apr 10",  1889,  5521],
         ["Apr 11",  2053,  6022],
         ["Apr 12",  2164,  6352],
+        ["Apr 13",  2285,  6810],
       ]);
 
   var options2 = {
-        colors: ['#6eeb34', '#8113e8'],
-        chart: {
-          title: 'Total Positive Cases Montgomery and Philadelphia County',
-          subtitle: 'This chart shows the raw count of positive cases in these counties.'
-        },
-        width: "100%",
-        height: 500,
-        // series: {
-        //   // Gives each series an axis name that matches the Y-axis below.
-        //   0: {axis: 'Tests'},
-        //   1: {axis: 'Percent'}
-        // }
-      };
-
-
-  var data3 = new google.visualization.DataTable();
-
-      data3.addColumn('string', 'Date');
-      data3.addColumn('number', 'Montgomery County');
-      data3.addColumn('number', 'Philadelphia County');
-
-      data3.addRows([
-        ["Mar 19",  47,  33],
-        ["Mar 20",  59,  42],
-        ["Mar 21",  71,  69],
-        ["Mar 22",  87,  91],
-        ["Mar 23",  129,  128],
-        ["Mar 24",  144,  177],
-        ["Mar 25",  172,  257],
-        ["Mar 26",  282,  402],
-        ["Mar 27",  374,  530],
-        ["Mar 28",  411,  709],
-        ["Mar 29",  488,  865],
-        ["Mar 30",  540,  1007],
-        ["Mar 31",  570,  1197],
-        ["Apr 1",  649,  1478],
-        ["Apr 2",  735,  1852],
-        ["Apr 3",  875,  2284],
-        ["Apr 4",  982,  2610],
-        ["Apr 5",  1111,  3135],
-        ["Apr 6",  1230,  3611],
-        ["Apr 7",  1359,  4012],
-        ["Apr 8",  1521,  4456],
-        ["Apr 9",  1693,  5029],
-      ]);
-
-  var options3 = {
         colors: ['#6eeb34', '#8113e8'],
         chart: {
           title: 'Total Positive Cases Montgomery and Philadelphia County',
@@ -263,12 +218,12 @@ and is wrapped around the whole page content, except for the footer in this exam
     <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
     <div class="w3-container">
       <h3><b></b></h3>
-      <h5>Page last updated on, <span class="w3-opacity">April 12, 2020</span></h5>
+      <h5>Page last updated on, <span class="w3-opacity">April 13, 2020</span></h5>
     </div>
 
     <div class="w3-container">
       <p>
-        DAILY PA REPORT: <a href="https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20Situation%20Reports/20200411nCoVSituationReportExt.pdf">STATE REPORT</a>
+        DAILY PA REPORT: <a href="https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20Situation%20Reports/20200412nCoVSituationReportExt.pdf">STATE REPORT</a>
       </p>
 
       <p>
@@ -293,12 +248,17 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
-      <h3><b>Day 22 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">April 12, 2020</span></h5>
+      <h3><b>Day 23 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">April 13, 2020</span></h5>
     </div>
 
     <div class="w3-container">
-      <p>4747 tests reported in PA today. 1178 positive. 13 deaths were reported today. A month into wide spread testing in the state, it seems as though the number of tests adminisitered is less important. Medical professionals seem to have a good understanding of the symptoms associated with Covid-19. For many patients there is no need to test, and a greater need to understand severity and treatment. The number of positive cases reported will continue to serve as an estimate to how the virus is spreading, but only if the number of tests per day stays somewhat consistent. Continued quarantine in PA will ensure that the hospitals can handle the sick, and we can prepare for life after Corona.</p>
+      <p>4902 tests reported in PA today. 1366 positive. 17 deaths were reported today. Montgomery County has the second highest number of confirmed positive cases in the state by county, but it ranks 8th in % of county infected. Monroe county ranks first with 0.48% of their population testing positive. It is early to say, but this may be the beginning of seeing how county wealth affects spread. Montgomery County ranks 2nd in the state in per capita income, while Monroe county ranks 21st.
+
+
+      </p>
+      <p>Repeating from yesterday because I think it is important:
+      A month into wide spread testing in the state, it seems as though the number of tests adminisitered is less important. Medical professionals seem to have a good understanding of the symptoms associated with Covid-19. For many patients there is no need to test, and a greater need to understand severity and treatment. The number of positive cases reported will continue to serve as an estimate to how the virus is spreading, but only if the number of tests per day stays somewhat consistent.</p>
       <div class="w3-row">
         <div class="w3-col m8 s12">
 <!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
@@ -326,6 +286,27 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
   <div id="piechart2"></div>
+    </div>
+  </div>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 22 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">April 12, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>4747 tests reported in PA today. 1178 positive. 13 deaths were reported today. A month into wide spread testing in the state, it seems as though the number of tests adminisitered is less important. Medical professionals seem to have a good understanding of the symptoms associated with Covid-19. For many patients there is no need to test, and a greater need to understand severity and treatment. The number of positive cases reported will continue to serve as an estimate to how the virus is spreading, but only if the number of tests per day stays somewhat consistent. Continued quarantine in PA will ensure that the hospitals can handle the sick, and we can prepare for life after Corona.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
     </div>
   </div>
 
