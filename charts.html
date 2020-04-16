@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162707788-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162707788-1');
+</script>
+</head>
+<title>COVID-19 in Pennsylvania</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+//create trigger to resizeEnd event     
+// $(window).resize(function() {
+//     if(this.resizeTO) clearTimeout(this.resizeTO);
+//     this.resizeTO = setTimeout(function() {
+//         $(this).trigger('resizeEnd');
+//     }, 500);
+// });
+
+// //redraw graph when window resize is completed  
+// $(window).on('resizeEnd', function() {
+//     drawChart(data);
+// });
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" language="javascript">
+// Load google charts
+google.charts.load('current', {'packages':['line']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+
+      var data = new google.visualization.DataTable();
+
+      data.addColumn('string', 'Date');
+      data.addColumn('number', 'Tests Reported');
+      data.addColumn('number', '% of Tests Positive');
+
+      data.addRows([
+        ["Mar 6", 0, 0],
+        ["Mar 7",  0, 0],
+        ["Mar 8",  2, 0],
+        ["Mar 9",  3, 0],
+        ["Mar 10",  5, 0],
+        ["Mar 11",  145,  0],
+        ["Mar 12",  62,  .0206],
+        ["Mar 13",  84, .1129],
+        ["Mar 14",  99, .1309],
+        ["Mar 15", 49, .1414],
+        ["Mar 16",  295,  .3265],
+        ["Mar 17",  229,  .0441],
+        ["Mar 18",  345,  .0873],
+        ["Mar 19",  473,  .1072],
+        ["Mar 20",  1049,  .0791],
+        ["Mar 21",  1295,  .0795],
+        ["Mar 22",  1306,  .0827],
+        ["Mar 23",  1796,  .0919],
+        ["Mar 24",  2255,  .0918],
+        ["Mar 25",  2826,  .0977],
+        ["Mar 26",  5808,  .0964],
+        ["Mar 27",  5106,  .1039],
+        ["Mar 28",  4771,  .1117],
+        ["Mar 29",  5450,  .1180],
+        ["Mar 30",  4087,  .1571],
+        ["Mar 31",  4624,  .1635],
+        ["Apr 1",  5744,  .1675],
+        ["Apr 2",  6482,  .1868],
+        ["Apr 3",  8420,  .1897],
+        ["Apr 4",  7915,  .2018],
+        ["Apr 5",  7741,  .1929],
+        ["Apr 6",  6083,  .2417],
+        ["Apr 7",  7424,  .2127],
+        ["Apr 8",  7260,  .2314],
+        ["Apr 9",  7064,  .2816],
+        ["Apr 10",  7417,  .2361],
+        ["Apr 11",  7134,  .2349],
+        ["Apr 12",  4737,  .2486],
+        ["Apr 13",  4902,  .2787],
+        ["Apr 14",  3839,  .2990],
+        ["Apr 15",  3953,  .2990],
+        ["Apr 16",  3886,  .3204],
+      ]);
+
+  var options = {
+        legend: { position: 'bottom' },
+        chart: {
+          title: '% of Daily Tests Positive',
+          subtitle: 'This chart shows that as testing has increased, there is still a steady growth rate in positive cases. This is a great sign!',
+          isStacked: "true"
+        },
+        width: "100%",
+        height: 500,
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:9000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:1,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      format:"#%"
+                      },
+                  },
+                  series: {0: {targetAxisIndex:0},
+                   1:{targetAxisIndex:1},
+                  },
+        // series: {
+        //   // Gives each series an axis name that matches the Y-axis below.
+        //   0: {axis: 'Tests'},
+        //   1: {axis: 'Percent'}
+        // }
+      };
+
+
+      var data2 = new google.visualization.DataTable();
+
+      data2.addColumn('string', 'Date');
+      data2.addColumn('number', 'Montgomery County');
+      data2.addColumn('number', 'Philadelphia County');
+
+      data2.addRows([
+        ["Mar 19",  47,  33],
+        ["Mar 20",  59,  42],
+        ["Mar 21",  71,  69],
+        ["Mar 22",  87,  91],
+        ["Mar 23",  129,  128],
+        ["Mar 24",  144,  177],
+        ["Mar 25",  172,  257],
+        ["Mar 26",  282,  402],
+        ["Mar 27",  374,  530],
+        ["Mar 28",  411,  709],
+        ["Mar 29",  488,  865],
+        ["Mar 30",  540,  1007],
+        ["Mar 31",  570,  1197],
+        ["Apr 1",  649,  1478],
+        ["Apr 2",  735,  1852],
+        ["Apr 3",  875,  2284],
+        ["Apr 4",  982,  2610],
+        ["Apr 5",  1111,  3135],
+        ["Apr 6",  1230,  3611],
+        ["Apr 7",  1359,  4012],
+        ["Apr 8",  1521,  4456],
+        ["Apr 9",  1693,  5029],
+        ["Apr 10",  1889,  5521],
+        ["Apr 11",  2053,  6022],
+        ["Apr 12",  2164,  6352],
+        ["Apr 13",  2285,  6810],
+        ["Apr 14",  2354,  7121],
+        ["Apr 15",  2475,  7347],
+        ["Apr 16",  2544,  7684],
+      ]);
+
+  var options2 = {
+        colors: ['#6eeb34', '#8113e8'],
+        chart: {
+          title: 'Total Positive Cases Montgomery and Philadelphia County',
+          subtitle: 'This chart shows the raw count of positive cases in these counties.'
+        },
+        width: "100%",
+        height: 500,
+        // series: {
+        //   // Gives each series an axis name that matches the Y-axis below.
+        //   0: {axis: 'Tests'},
+        //   1: {axis: 'Percent'}
+        // }
+      };
+
+        
+
+  function resize() {
+
+    var chart = new google.charts.Line(document.getElementById('piechart'));
+    var chart2 = new google.charts.Line(document.getElementById('piechart2'));
+
+    chart.draw(data, google.charts.Line.convertOptions(options));
+    chart2.draw(data2, google.charts.Line.convertOptions(options2));
+  }
+  window.onload = resize();
+  window.onresize = resize;
+      
+
+}
+</script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Charts Tracking Postitive Cases of COVID-19 in Pennsylvania</b></h1>
+  <p>Created by <span class="w3-tag">David Miron</span></p>
+</header>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="piechart2"></div>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="piechart"></div>
+    </div>
+  </div>
+
+
+<hr>  
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Helpful Links</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">PA Tracking</span><br>
+        <span><a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">health.pa.gov</a></span>
+      </li>
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">US Tracking Data</span><br>
+        <span><a href="https://covidtracking.com/">COVID Tracking Project</a></span>
+      </li> 
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">US Surveillance Dashboard</span><br>
+        <span><a href=http://ncov.bii.virginia.edu/dashboard/>UVA Biocomplexity Institute</a></span>
+      </li>   
+      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+<!--         <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Tracking Mobility Using Smart Phone Data</span><br>
+        <span><a href=https://www.unacast.com/covid19/social-distancing-scoreboard/>Unacast (scroll down and select PA)</a></span>
+      </li>  
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Median Age by County in PA</span><br>
+        <span><a href="  https://mapmaker2.millersville.edu/pamaps/MedianAge/">Millersville University</a></span>
+      </li>
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Raw Data County + State</span><br>
+        <span><a href="https://github.com/nytimes/covid-19-data">New York Times</a></span>
+      </li>
+    </ul>
+  </div>
+  <hr> 
+ 
+  <!-- Labels / tags -->
+<!--   <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+    </p>
+    </div>
+  </div> -->
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <!-- <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button> -->
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
+</html>
