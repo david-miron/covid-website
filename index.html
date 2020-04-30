@@ -18,20 +18,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-//create trigger to resizeEnd event     
-// $(window).resize(function() {
-//     if(this.resizeTO) clearTimeout(this.resizeTO);
-//     this.resizeTO = setTimeout(function() {
-//         $(this).trigger('resizeEnd');
-//     }, 500);
-// });
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>ArcGIS Dashboards</title>
+<meta name="description" content>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-// //redraw graph when window resize is completed  
-// $(window).on('resizeEnd', function() {
-//     drawChart(data);
-// });
-</script>
+<link href="https://js.arcgis.com/3.32/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css">
+<link href="https://js.arcgis.com/3.32/esri/css/esri.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" language="javascript">
@@ -42,84 +36,67 @@ google.charts.setOnLoadCallback(drawChart);
 // Draw the chart and set the chart values
 function drawChart() {
 
-      var data = new google.visualization.DataTable();
+      var data2 = new google.visualization.DataTable();
 
-      data.addColumn('string', 'Date');
-      data.addColumn('number', 'Tests Reported');
-      data.addColumn('number', '% of Tests Positive');
+      data2.addColumn('string', 'Date');
+      data2.addColumn('number', 'MontCo 14 Day');
+      data2.addColumn('number', 'MontCo Goal');
+      data2.addColumn('number', 'Philly 14 Day');
+      data2.addColumn('number', 'Philly Goal');
 
-      data.addRows([
-        ["Mar 6", 0, 0],
-        ["Mar 7",  0, 0],
-        ["Mar 8",  2, 0],
-        ["Mar 9",  3, 0],
-        ["Mar 10",  5, 0],
-        ["Mar 11",  145,  0],
-        ["Mar 12",  62,  .0206],
-        ["Mar 13",  84, .1129],
-        ["Mar 14",  99, .1309],
-        ["Mar 15", 49, .1414],
-        ["Mar 16",  295,  .3265],
-        ["Mar 17",  229,  .0441],
-        ["Mar 18",  345,  .0873],
-        ["Mar 19",  473,  .1072],
-        ["Mar 20",  1049,  .0791],
-        ["Mar 21",  1295,  .0795],
-        ["Mar 22",  1306,  .0827],
-        ["Mar 23",  1796,  .0919],
-        ["Mar 24",  2255,  .0918],
-        ["Mar 25",  2826,  .0977],
-        ["Mar 26",  5808,  .0964],
-        ["Mar 27",  5106,  .1039],
-        ["Mar 28",  4771,  .1117],
-        ["Mar 29",  5450,  .1180],
-        ["Mar 30",  4087,  .1571],
-        ["Mar 31",  4624,  .1635],
-        ["Apr 1",  5744,  .1675],
-        ["Apr 2",  6482,  .1868],
-        ["Apr 3",  8420,  .1897],
-        ["Apr 4",  7915,  .2018],
-        ["Apr 5",  7741,  .1929],
-        ["Apr 6",  6083,  .2417],
-        ["Apr 7",  7424,  .2127],
-        ["Apr 8",  7260,  .2314],
-        ["Apr 9",  7064,  .2816],
-        ["Apr 10",  7417,  .2361],
-        ["Apr 11",  7134,  .2349],
-        ["Apr 12",  4737,  .2486],
-        ["Apr 13",  4902,  .2787],
-        ["Apr 14",  3839,  .2990],
-        ["Apr 15",  3953,  .2990],
+      data2.addRows([
+        ["19-Mar", 0, 414, 0, 792],
+        ["20-Mar", 12, 414, 9, 792],
+        ["21-Mar", 24, 414, 36, 792],
+        ["22-Mar", 40, 414, 58, 792],
+        ["23-Mar", 82, 414, 95, 792],
+        ["24-Mar", 97, 414, 144, 792],
+        ["25-Mar", 125, 414, 224, 792],
+        ["26-Mar", 235, 414, 369, 792],
+        ["27-Mar", 327, 414, 497, 792],
+        ["28-Mar", 364, 414, 676, 792],
+        ["29-Mar", 441, 414, 832, 792],
+        ["30-Mar", 493, 414, 974, 792],
+        ["31-Mar", 523, 414, 1164, 792],
+        ["1-Apr", 602, 414, 1445, 792],
+        ["2-Apr", 676, 414, 1810, 792],
+        ["3-Apr", 804, 414, 2215, 792],
+        ["4-Apr", 895, 414, 2519, 792],
+        ["5-Apr", 982, 414, 3007, 792],
+        ["6-Apr", 1086, 414, 3434, 792],
+        ["7-Apr", 1187, 414, 3755, 792],
+        ["8-Apr", 1239, 414, 4054, 792],
+        ["9-Apr", 1319, 414, 4499, 792],
+        ["10-Apr", 1478, 414, 4812, 792],
+        ["11-Apr", 1565, 414, 5157, 792],
+        ["12-Apr", 1624, 414, 5345, 792],
+        ["13-Apr", 1715, 414, 5613, 792],
+        ["14-Apr", 1705, 414, 5643, 792],
+        ["15-Apr", 1740, 414, 5495, 792],
+        ["16-Apr", 1669, 414, 5400, 792],
+        ["17-Apr", 1702, 414, 5528, 792],
+        ["18-Apr", 1670, 414, 5367, 792],
+        ["19-Apr", 1683, 414, 5153, 792],
+        ["20-Apr", 1681, 414, 5026, 792],
+        ["21-Apr", 1633, 414, 4935, 792],
+        ["22-Apr", 1601, 414, 4667, 792],
+        ["23-Apr", 1506, 414, 4569, 792],
+        ["24-Apr", 1472, 414, 4485, 792],
+        ["25-Apr", 1463, 414, 4541, 792],
+        ["26-Apr", 1448, 414, 4342, 792],
+        ["27-Apr", 1463, 414, 4240, 792],
+        ["28-Apr", 1568, 414, 4257, 792],
+        ["29-Apr", 1633, 414, 4201, 792],
+        ["30-Apr", 1623, 414, 4159, 792],
       ]);
 
-  var options = {
-        legend: { position: 'bottom' },
+  var options2 = {
+        colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
         chart: {
-          title: '% of Daily Tests Positive',
-          subtitle: 'This chart shows that as testing has increased, there is still a steady growth rate in positive cases. This is a great sign!',
-          isStacked: "true"
+          title: 'New Cases in Past 14 Days',
         },
         width: "100%",
         height: 500,
-        vAxes: {  0: {viewWindowMode:'explicit',
-                      viewWindow:{
-                                  max:9000,
-                                  min:0
-                                  },
-                      gridlines: {color: 'transparent'},
-                      },
-                  1: {viewWindowMode:'explicit',
-                      viewWindow:{
-                                  max:1,
-                                  min:0
-                                  },
-                      gridlines: {color: 'transparent'},
-                      format:"#%"
-                      },
-                  },
-                  series: {0: {targetAxisIndex:0},
-                   1:{targetAxisIndex:1},
-                  },
         // series: {
         //   // Gives each series an axis name that matches the Y-axis below.
         //   0: {axis: 'Tests'},
@@ -128,17 +105,52 @@ function drawChart() {
       };
 
         
+
   function resize() {
 
-    var chart = new google.charts.Line(document.getElementById('piechart'));
+    var chart2 = new google.charts.Line(document.getElementById('piechart2'));
 
-    chart.draw(data, google.charts.Line.convertOptions(options));
+    chart2.draw(data2, google.charts.Line.convertOptions(options2));
   }
   window.onload = resize();
   window.onresize = resize;
       
 
 }
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" language="javascript">
+// Load google charts
+google.charts.load('current', {'packages':['line']});
+google.charts.load('current', {'packages':['table']});
+google.charts.setOnLoadCallback(drawTable);
+
+      function drawTable(data) {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Date');
+        data.addColumn('number', 'Tests');
+        data.addColumn('number', 'Positives');
+        data.addColumn('number', 'Deaths');
+        data.addColumn('number', 'Total Deaths');
+        data.addRows([
+          ['4.30.20', 6482, 1397, 97, 2292],
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+        
+  function resize() {
+
+    var chart = new google.charts.Line(document.getElementById('table_div'));
+
+    chart.draw(data, google.charts.Line.convertOptions(options));
+  }
+  window.onload = resize();
+  window.onresize = resize;
+      
 </script>
 
 <style>
@@ -166,7 +178,7 @@ and is wrapped around the whole page content, except for the footer in this exam
     <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
     <div class="w3-container">
       <h3><b></b></h3>
-      <h5>Page last updated on, <span class="w3-opacity">April 29, 2020</span></h5>
+      <h5>Page last updated on, <span class="w3-opacity">April 30, 2020</span></h5>
     </div>
 
     <div class="w3-container">
@@ -202,6 +214,63 @@ and is wrapped around the whole page content, except for the footer in this exam
   </div>
   <hr>
 
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="piechart2"></div>
+  <div class="w3-container">
+
+      <p>
+        This chart shows the number of new cases in Montgomery and Philadelphia County over the last 14 days.
+      </p>
+      <p>
+        This chart is motivated by the state's guidance that counties "having fewer than 50 new confirmed cases per 100,000 population reported to the department in the previous 14 days" will be able to begin the return to normal lifestyle. 
+      </p>
+
+      <p>
+      The "goal" line will show where we need to get for these counties to re-open.
+      </p>
+  </div> 
+    </div>
+  </div>
+
+<!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 40 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">April 30, 2020</span></h5>
+    </div>
+
+    <div id="table_div"></div>
+
+    <div class="w3-container">
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+ -->        </div>
+        <div class="w3-col m4 w3-hide-small">
+<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+ -->        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <h3><b>Clickable County Map</b></h3>
+    </div>
+    <div class="w3-container">
+      <iframe width= 100% height="640" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+src="https://experience.arcgis.com/experience/bc92e33cfd5d417795f7a7a1a5cb3b1d/"></iframe>
+    </div>
+  </div>
+
+
 <!-- Blog entry -->
   <div class="w3-card-4 w3-margin w3-white">
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
@@ -214,7 +283,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       <p>5,795 tests reported today. 1,102 were positive. 479 deaths were reported today. Death total is now 2,195 in the state. A big spike in total deaths, but it may be due to assisted living homes catching up in reporting. The % of total deaths coming from assisted living home residents continues to climb in the state (65% now). There have been 1,702 and 4,538 postive cases in Montgomery and Philadelphia County, respectively in the last 14 days. Goal counts for these counties to move into the next reopening phase are 414 and 792. The state has now tested 214,000 people (1.7% of the population). 79%% of all conducted tests were negative.</p>
 
       <p>
-        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>..
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
       </p>
       <div class="w3-row">
         <div class="w3-col m8 s12">
@@ -224,13 +293,6 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
  -->        </div>
       </div>
-    </div>
-  </div>
-    
-  <div class="w3-card-4 w3-margin w3-white">
-    <div class="w3-container">
-      <h3><b>Clickable County Map from <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">health.pa.gov</a></b></h3>
-  <iframe src="https://www.google.com/maps/d/embed?mid=1lpLPPrltIuVkwFtXhoWdWEA4B1DvNmne" width="100%" height="500"></iframe>
     </div>
   </div>
 
