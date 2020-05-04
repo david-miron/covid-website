@@ -89,6 +89,9 @@ function drawChart() {
         ["29-Apr", 1633, 414, 4201, 792],
         ["30-Apr", 1623, 414, 4159, 792],
         ["1-May", 1625, 414, 4042, 792],
+        ["2-May", 1574, 414, 4184, 792],
+        ["3-May", 1512, 414, 4141, 792],
+        ["4-May", 1491, 414, 3925, 792],
       ]);
 
   var options2 = {
@@ -135,6 +138,9 @@ google.charts.setOnLoadCallback(drawTable);
         data.addColumn('number', 'Deaths');
         data.addColumn('number', 'Total Deaths');
         data.addRows([
+          ['5.04.20', 4949, 825, 14, 2458],
+          ['5.03.20', 5265, 962, 26, 2444],
+          ['5.02.20', 7928, 1334, 64, 2418],
           ['5.01.20', 6083, 1208, 62, 2354],
           ['4.30.20', 6482, 1397, 97, 2292],
         ]);
@@ -168,7 +174,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <header class="w3-container w3-center w3-padding-32"> 
   <h1><b>Tracking COVID-19 in Pennsylvania</b></h1>
   <p>Created by <span class="w3-tag"><a style="color:blue" href="https://www.linkedin.com/in/david-miron/">David Miron</a></span></p>
-  <center><h5>Page last updated on, <span class="w3-opacity">May 1, 2020</span></h5></center>
+  <center><h5>Page last updated on, <span class="w3-opacity">May 4, 2020</span></h5></center>
   <h4 style="color:DodgerBlue"><b><center> <a href="https://pa-covid19.com/charts">Charts</a> <br> <a href="https://www.governor.pa.gov/process-to-reopen-pennsylvania/">Process to Reopen Pennsylvania</a> <br> Hospital Data: <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85054b06472e4208b02285b8557f24cf">Desktop</a>
         <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/00bd7d163117479c84da5405f25e2cdb">Mobile</a> </center></b></h4>
 </header>
@@ -207,26 +213,19 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
       <h3><b>Day 41 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 1, 2020</span></h5>
+      <h5>Daily Update, <span class="w3-opacity">May 4, 2020</span></h5>
     </div>
 
     <div id="table_div"></div>
 
     <div class="w3-container">
 
-      <p>Montogomery County has now claimed the lives of 288 residents in nursing and personal care homes. There are 60 Nusring facilities in Montogmery County with a total of 7172 beds for patients. If we assume all facilities were at max capacity when Coronavirus broke out, that would mean that Coronavirus has claimed the lives of 4% of all residents. In the state there were 80,000 Pennsylvanians in nursing homes, and Coronavirus has now taken the lives of 1,560 of those residents (1.95% of nursing home residents). Nursing home deaths now accoutn for 66% of the total death count in Pennsylvania. What can we do to help those working/living in Nursing homes? Should some of the focus on Hospitals shift to these 700 homes? Sources: <a href="https://www.health.pa.gov/topics/facilities/nursing%20homes/Pages/Nursing%20Homes.aspx">Nursing Homes</a> <a href="http://sais.health.pa.gov/commonpoc/nhLocatorie.asp">Nursing Home Locator</a></p>
+      <p>Since Friday, May 1st there have been 3k positive cases, 15k negative cases, and 104 deaths. Governor Wolf has released plans for counties to begin reopening this Friday. For the first time since April 1st, we have two straight days (today and yesterday) with less than 1000 reported positive cases! Find information regarding counties reopening here <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
 
       <p>
         The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
       </p>
-      <div class="w3-row">
-        <div class="w3-col m8 s12">
-<!--           <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
- -->        </div>
-        <div class="w3-col m4 w3-hide-small">
-<!--           <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
- -->        </div>
-      </div>
+
     </div>
   </div>
 
@@ -238,6 +237,25 @@ and is wrapped around the whole page content, except for the footer in this exam
     <div class="w3-container">
       <iframe width= 100% height="640" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
 src="https://experience.arcgis.com/experience/bc92e33cfd5d417795f7a7a1a5cb3b1d/"></iframe>
+    </div>
+  </div>
+
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 41 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 1, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+
+      <p>Montogomery County has now claimed the lives of 288 residents in nursing and personal care homes. There are 60 Nusring facilities in Montogmery County with a total of 7172 beds for patients. If we assume all facilities were at max capacity when Coronavirus broke out, that would mean that Coronavirus has claimed the lives of 4% of all residents. In the state there were 80,000 Pennsylvanians in nursing homes, and Coronavirus has now taken the lives of 1,560 of those residents (1.95% of nursing home residents). Nursing home deaths now accoutn for 66% of the total death count in Pennsylvania. What can we do to help those working/living in Nursing homes? Should some of the focus on Hospitals shift to these 700 homes? Sources: <a href="https://www.health.pa.gov/topics/facilities/nursing%20homes/Pages/Nursing%20Homes.aspx">Nursing Homes</a> <a href="http://sais.health.pa.gov/commonpoc/nhLocatorie.asp">Nursing Home Locator</a></p>
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
     </div>
   </div>
 
