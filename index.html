@@ -102,11 +102,24 @@ function drawChart() {
         },
         width: "100%",
         height: 500,
-        // series: {
-        //   // Gives each series an axis name that matches the Y-axis below.
-        //   0: {axis: 'Tests'},
-        //   1: {axis: 'Percent'}
-        // }
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:6000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:2000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:1},
+                   1:{targetAxisIndex:1},
+                  },
       };
 
         
@@ -139,6 +152,7 @@ google.charts.setOnLoadCallback(drawTable);
         data.addColumn('number', 'Deaths');
         data.addColumn('number', 'Total Deaths');
         data.addRows([
+          ['5.06.20', 5458, 888, 94, 3106],
           ['5.05.20', 5292, 865, 554, 3012],
           ['5.04.20', 4949, 825, 14, 2458],
           ['5.03.20', 5265, 962, 26, 2444],
@@ -176,7 +190,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <header class="w3-container w3-center w3-padding-32"> 
   <h1><b>Tracking COVID-19 in Pennsylvania</b></h1>
   <p>Created by <span class="w3-tag"><a style="color:blue" href="https://www.linkedin.com/in/david-miron/">David Miron</a></span></p>
-  <center><h5>Page last updated on, <span class="w3-opacity">May 4, 2020</span></h5></center>
+  <center><h5>Page last updated on, <span class="w3-opacity">May 6, 2020</span></h5></center>
   <h4 style="color:DodgerBlue"><b><center> <a href="https://pa-covid19.com/charts">Charts</a> <br> <a href="https://www.governor.pa.gov/process-to-reopen-pennsylvania/">Process to Reopen Pennsylvania</a> <br> Hospital Data: <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85054b06472e4208b02285b8557f24cf">Desktop</a>
         <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/00bd7d163117479c84da5405f25e2cdb">Mobile</a> </center></b></h4>
 </header>
@@ -198,6 +212,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
       <p>
         This chart shows the number of new cases in Montgomery and Philadelphia County over the last 14 days.
+        <br> <strong style="color:Red"><b>NOTE: MontCo Numbers on the left axis, and Philly on the right.</b></strong>
       </p>
       <p>
         This chart is motivated by the state's guidance that counties "having fewer than 50 new confirmed cases per 100,000 population reported to the department in the previous 14 days" will be able to begin the return to normal lifestyle. 
@@ -214,15 +229,15 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
-      <h3><b>Day 45 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 5, 2020</span></h5>
+      <h3><b>Day 46 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 6, 2020</span></h5>
     </div>
 
     <div id="table_div"></div>
 
     <div class="w3-container">
 
-      <p>Three straight days now with less than 1000 positive cases reported. 554 deaths were reported today, increasing the total death count by over 20% in just one day. I don't think this big number is because something happened in the last 48 hours, but rather due to delayed reporting that's released in large numbers. 67% of all those that have lost their lives in the state due to Covid19 were residents of assisted living homes. The number of positive cases over the last 14 days in Montgomery and Philadelphia County have decreased for nearly a week straight! <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+      <p>Four straight days now with less than 1000 positive cases reported! The percent of tests returning positive has been under 20% for 6 straight days. The first time this has been the case since April 3rd. The number of positive cases over the last 14 days in Philadelphia County continues to decrease, while Montco 14day positive count hovers around 1400. <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
 
       <p>
         The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
@@ -246,11 +261,28 @@ src="https://experience.arcgis.com/experience/bc92e33cfd5d417795f7a7a1a5cb3b1d/"
   <div class="w3-card-4 w3-margin w3-white">
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
+      <h3><b>Day 45 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 5, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+
+      <p>Three straight days now with less than 1000 positive cases reported. 554 deaths were reported today, increasing the total death count by over 20% in just one day. I don't think this big number is because something happened in the last 48 hours, but rather due to delayed reporting that's released in large numbers. 67% of all those that have lost their lives in the state due to Covid19 were residents of assisted living homes. The number of positive cases over the last 14 days in Montgomery and Philadelphia County have decreased for nearly a week straight! <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
+
+    </div>
+  </div>
+
+<!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
       <h3><b>Day 44 of Tracking</b></h3>
       <h5>Daily Update, <span class="w3-opacity">May 4, 2020</span></h5>
     </div>
-
-    <div id="table_div"></div>
 
     <div class="w3-container">
 
