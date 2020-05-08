@@ -15,33 +15,39 @@
  <script src="jquery.csv.min.js"></script>
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-<script type="text/javascript"> // load the visualisation API
-  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
-</script>
-
 <script type="text/javascript">
-function drawVisualization() {
-   $.get("ifr.csv", function(csvString) {
+// load the visualization library from Google and set a listener
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+// this has to be a global function
+function drawChart() {
+   // grab the CSV
+   $.get("example.csv", function(csvString) {
       // transform the CSV string into a 2-dimensional array
       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
 
       // this new DataTable object holds all the data
       var data = new google.visualization.arrayToDataTable(arrayData);
-      // CAPACITY - En-route ATFM delay - YY - CHART
-      var crt_ertdlyYY = new google.visualization.ChartWrapper({
-         chartType: 'LineChart',
-         containerId: 'crt_ertdlyYY',
-         dataTable: data,
-         options:{
-            width: 450, height: 160,
-            title: 'EU-wide en-route ATFM delays (year to date)',
-            titleTextStyle : {color: 'grey', fontSize: 11},
-         }
-      });
-      crt_ertdlyYY.draw();
-   });
-}
-google.setOnLoadCallback(drawVisualization)
-</script>
 
-<div id="crt_ertdlyYY"></div>
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,1]);
+
+     // set chart options
+     var options = {
+        title: "A Chart from a CSV!",
+        hAxis: {title: data.getColumnLabel(0), minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max},
+        vAxis: {title: data.getColumnLabel(1), minValue: data.getColumnRange(1).min, maxValue: data.getColumnRange(1).max},
+        legend: 'none'
+     };
+
+     // create the chart object and draw it
+     var chart = new google.visualization.ScatterChart(document.getElementById('chart'));
+     chart.draw(view, options);
+  });
+}
+</script>
+<body>
+  <div id="chart"></div>
+</body>
