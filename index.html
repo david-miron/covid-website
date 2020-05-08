@@ -241,9 +241,9 @@ function drawChart() {
 
 function resize() {
 
-    var chart = new google.charts.Line(document.getElementById('14_day_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
 
-    chart.draw(data, google.charts.Line.convertOptions(options));
+    chart.draw(view, options);
   }
   window.onload = resize();
   window.onresize = resize;
