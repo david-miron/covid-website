@@ -20,12 +20,15 @@
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
 
+console.log($.csv);
+var ax = $.csv;   // <<< --- this change $.csv for ax !!!
+
 // this has to be a global function
 function drawChart() {
    // grab the CSV
    $.get("ifr.csv", function(csvString) {
       // transform the CSV string into a 2-dimensional array
-      var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
 
       // this new DataTable object holds all the data
       var data = new google.visualization.arrayToDataTable(arrayData);
