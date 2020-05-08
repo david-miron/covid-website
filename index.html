@@ -184,69 +184,6 @@ google.charts.setOnLoadCallback(drawTable);
       
 </script>
 
-<script type="text/javascript">
-// load the visualization library from Google and set a listener
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
-
-console.log($.csv);
-var ax = $.csv;   // <<< --- this change $.csv for ax !!!
-
-// this has to be a global function
-function drawChart() {
-   // grab the CSV
-   $.get("data/14_day_chart.csv", function(csvString) {
-      // transform the CSV string into a 2-dimensional array
-      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
-
-      // this new DataTable object holds all the data
-      var data = new google.visualization.arrayToDataTable(arrayData);
-
-      // this view can select a subset of the data at a time
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0,2,3,5,6]);
-
-     var options = {
-        colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
-        chart: {
-          title: 'New Cases in Past 14 Days',
-        },
-        width: "100%",
-        height: 500,
-        vAxes: {  0: {viewWindowMode:'explicit',
-                      viewWindow:{
-                                  max:6000,
-                                  min:0
-                                  },
-                      gridlines: {color: 'transparent'},
-                      },
-                  1: {viewWindowMode:'explicit',
-                      viewWindow:{
-                                  max:2000,
-                                  min:0
-                                  },
-                      gridlines: {color: 'transparent'},
-                      },
-                  },
-                  series: {0: {targetAxisIndex:1},
-                   1:{targetAxisIndex:1},
-                  },
-      };
-
-    function resize() {
-      var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
-      chart2.draw(view, google.charts.Line.convertOptions(options));
-    }
-
-    window.onload = resize();
-    window.onresize = resize;
-
-  });
-}
-
-
-</script>
-
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
