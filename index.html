@@ -26,7 +26,9 @@
 
 <link href="https://js.arcgis.com/3.32/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css">
 <link href="https://js.arcgis.com/3.32/esri/css/esri.css" rel="stylesheet" type="text/css">
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" language="javascript">
 // Load google charts
@@ -182,6 +184,71 @@ google.charts.setOnLoadCallback(drawTable);
       
 </script>
 
+<script type="text/javascript">
+// load the visualization library from Google and set a listener
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+console.log($.csv);
+var ax = $.csv;   // <<< --- this change $.csv for ax !!!
+
+// this has to be a global function
+function drawChart() {
+   // grab the CSV
+   $.get("data/14_day_chart.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
+
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
+
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,2,3,5,6]);
+
+     var options = {
+        colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
+        chart: {
+          title: 'New Cases in Past 14 Days',
+        },
+        width: "100%",
+        height: 500,
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:6000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:2000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:1},
+                   1:{targetAxisIndex:1},
+                  },
+      };
+
+     // create the chart object and draw it
+     var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
+     chart.draw(view, options);
+  });
+}
+
+function resize() {
+
+    var chart = new google.charts.Line(document.getElementById('14_day_chart'));
+
+    chart.draw(data, google.charts.Line.convertOptions(options));
+  }
+  window.onload = resize();
+  window.onresize = resize;
+</script>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
@@ -212,7 +279,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-  <div id="piechart2"></div>
+  <div id="14_day_chart"></div>
   <div class="w3-container">
 
       <p>
