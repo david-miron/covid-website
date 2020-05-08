@@ -233,20 +233,23 @@ function drawChart() {
                   },
       };
 
+    function resize() {
+
+    var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
+
+    chart.draw(view, options);
+    }
+
+    window.onload = resize();
+    window.onresize = resize;
+    
      // create the chart object and draw it
      // var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
      // chart.draw(view, options);
   });
 }
 
-function resize() {
 
-    var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
-
-    chart.draw(view, options);
-  }
-  window.onload = resize();
-  window.onresize = resize;
 </script>
 
 <style>
