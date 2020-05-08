@@ -235,7 +235,7 @@ function drawChart() {
 
     function resize() {
       var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
-      chart2.draw(data2, google.charts.Line.convertOptions(options));
+      chart2.draw(view, google.charts.Line.convertOptions(options));
     }
 
     window.onload = resize();
