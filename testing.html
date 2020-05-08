@@ -32,8 +32,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 // load the visualization library from Google and set a listener
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
+google.charts.load('current', {'packages':['line']});
+google.charts.setOnLoadCallback(drawChart);
 
 console.log($.csv);
 var ax = $.csv;   // <<< --- this change $.csv for ax !!!
@@ -80,8 +80,9 @@ function drawChart() {
       };
 
     function resize() {
-      var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
-      chart.draw(view, options);
+      var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
+
+      chart2.draw(view, google.charts.Line.convertOptions(options));
     }
 
     window.onload = resize();
