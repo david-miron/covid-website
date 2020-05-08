@@ -30,77 +30,29 @@
  <script src="jquery.csv.min.js"></script>
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" language="javascript">
-// Load google charts
+<script type="text/javascript">
+// load the visualization library from Google and set a listener
 google.charts.load('current', {'packages':['line']});
 google.charts.setOnLoadCallback(drawChart);
 
-// Draw the chart and set the chart values
+console.log($.csv);
+var ax = $.csv;   // <<< --- this change $.csv for ax !!!
+
+// this has to be a global function
 function drawChart() {
+   // grab the CSV
+   $.get("data/14_day_chart.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
 
-      var data2 = new google.visualization.DataTable();
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
 
-      data2.addColumn('string', 'Date');
-      data2.addColumn('number', 'MontCo 14 Day');
-      data2.addColumn('number', 'MontCo Goal');
-      data2.addColumn('number', 'Philly 14 Day');
-      data2.addColumn('number', 'Philly Goal');
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,2,3,5,6]);
 
-      data2.addRows([
-        ["19-Mar", 0, 414, 0, 792],
-        ["20-Mar", 12, 414, 9, 792],
-        ["21-Mar", 24, 414, 36, 792],
-        ["22-Mar", 40, 414, 58, 792],
-        ["23-Mar", 82, 414, 95, 792],
-        ["24-Mar", 97, 414, 144, 792],
-        ["25-Mar", 125, 414, 224, 792],
-        ["26-Mar", 235, 414, 369, 792],
-        ["27-Mar", 327, 414, 497, 792],
-        ["28-Mar", 364, 414, 676, 792],
-        ["29-Mar", 441, 414, 832, 792],
-        ["30-Mar", 493, 414, 974, 792],
-        ["31-Mar", 523, 414, 1164, 792],
-        ["1-Apr", 602, 414, 1445, 792],
-        ["2-Apr", 676, 414, 1810, 792],
-        ["3-Apr", 804, 414, 2215, 792],
-        ["4-Apr", 895, 414, 2519, 792],
-        ["5-Apr", 982, 414, 3007, 792],
-        ["6-Apr", 1086, 414, 3434, 792],
-        ["7-Apr", 1187, 414, 3755, 792],
-        ["8-Apr", 1239, 414, 4054, 792],
-        ["9-Apr", 1319, 414, 4499, 792],
-        ["10-Apr", 1478, 414, 4812, 792],
-        ["11-Apr", 1565, 414, 5157, 792],
-        ["12-Apr", 1624, 414, 5345, 792],
-        ["13-Apr", 1715, 414, 5613, 792],
-        ["14-Apr", 1705, 414, 5643, 792],
-        ["15-Apr", 1740, 414, 5495, 792],
-        ["16-Apr", 1669, 414, 5400, 792],
-        ["17-Apr", 1702, 414, 5528, 792],
-        ["18-Apr", 1670, 414, 5367, 792],
-        ["19-Apr", 1683, 414, 5153, 792],
-        ["20-Apr", 1681, 414, 5026, 792],
-        ["21-Apr", 1633, 414, 4935, 792],
-        ["22-Apr", 1601, 414, 4667, 792],
-        ["23-Apr", 1506, 414, 4569, 792],
-        ["24-Apr", 1472, 414, 4485, 792],
-        ["25-Apr", 1463, 414, 4541, 792],
-        ["26-Apr", 1448, 414, 4342, 792],
-        ["27-Apr", 1463, 414, 4240, 792],
-        ["28-Apr", 1568, 414, 4257, 792],
-        ["29-Apr", 1633, 414, 4201, 792],
-        ["30-Apr", 1623, 414, 4159, 792],
-        ["1-May", 1625, 414, 4042, 792],
-        ["2-May", 1574, 414, 4184, 792],
-        ["3-May", 1512, 414, 4141, 792],
-        ["4-May", 1491, 414, 3925, 792],
-        ["5-May", 1393, 414, 3867, 792],
-        ["6-May", 1432, 414, 3652, 792],
-        ["7-May", 1390, 414, 3499, 792],
-        ["8-May", 1410, 414, 3491, 792],
-      ]);
-
-  var options2 = {
+     var options = {
         colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
         chart: {
           title: 'New Cases in Past 14 Days',
@@ -127,19 +79,18 @@ function drawChart() {
                   },
       };
 
-        
+    function resize() {
+      var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
 
-  function resize() {
+      chart2.draw(view, google.charts.Line.convertOptions(options));
+    }
 
-    var chart2 = new google.charts.Line(document.getElementById('piechart2'));
+    window.onload = resize();
+    window.onresize = resize;
 
-    chart2.draw(data2, google.charts.Line.convertOptions(options2));
-  }
-  window.onload = resize();
-  window.onresize = resize;
-      
-
+  });
 }
+
 </script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -214,7 +165,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-  <div id="piechart2"></div>
+  <div id="14_day_chart"></div>
   <div class="w3-container">
 
       <p>
