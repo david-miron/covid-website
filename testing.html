@@ -80,8 +80,8 @@ function drawChart() {
       };
 
     function resize() {
-      var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
-      chart2.draw(view, google.charts.Line.convertOptions(options));
+      var chart = new google.visualization.LineChart(document.getElementById('14_day_chart'));
+      chart.draw(view, options);
     }
 
     window.onload = resize();
