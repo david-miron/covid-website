@@ -26,7 +26,7 @@ var ax = $.csv;   // <<< --- this change $.csv for ax !!!
 // this has to be a global function
 function drawChart() {
    // grab the CSV
-   $.get("ifr.csv", function(csvString) {
+   $.get("data/14_day_chart.csv", function(csvString) {
       // transform the CSV string into a 2-dimensional array
       var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
 
@@ -35,15 +35,42 @@ function drawChart() {
 
       // this view can select a subset of the data at a time
       var view = new google.visualization.DataView(data);
-      view.setColumns([0,1]);
+      view.setColumns([0,2,3,5,6]);
 
      // set chart options
-     var options = {
-        title: "A Chart from a CSV!",
-        hAxis: {title: data.getColumnLabel(0), minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max},
-        vAxis: {title: data.getColumnLabel(1), minValue: data.getColumnRange(1).min, maxValue: data.getColumnRange(1).max},
-        legend: 'none'
-     };
+     // var options = {
+     //    title: "A Chart from a CSV!",
+     //    hAxis: {title: data.getColumnLabel(0), minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max},
+     //    vAxis: {title: data.getColumnLabel(1), minValue: data.getColumnRange(1).min, maxValue: data.getColumnRange(1).max},
+     //    legend: 'none'
+     // };
+
+     var options2 = {
+        colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
+        chart: {
+          title: 'New Cases in Past 14 Days',
+        },
+        width: "100%",
+        height: 500,
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:6000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:2000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:1},
+                   1:{targetAxisIndex:1},
+                  },
+      };
 
      // create the chart object and draw it
      var chart = new google.visualization.ScatterChart(document.getElementById('chart'));
