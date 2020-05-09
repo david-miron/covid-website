@@ -48,10 +48,13 @@ function drawChart() {
       var data = new google.visualization.arrayToDataTable(arrayData);
 
       // this view can select a subset of the data at a time
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0,1,2,3]);
+      var daily_view = new google.visualization.DataView(data);
+      daily_view.setColumns([0,1,2,3]);
 
-     var options = {
+      var county_view = new google.visualization.DataView(data);
+      county_view.setColumns([4,5,6,7]);
+
+     var daily_options = {
         legend: { position: 'bottom' },
         chart: {
           title: '% of Daily Tests Positive',
@@ -82,14 +85,44 @@ function drawChart() {
                   },
       };
 
+      var county_options = {
+        colors: ['#6eeb34', '#8113e8'],
+        chart: {
+          title: 'Total Positive Cases Montgomery and Philadelphia County',
+          subtitle: 'NOTE: Montogomery is on the Left axis, and Philadelphia is on the right axis'
+        },
+        width: "100%",
+        height: 500,
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:15000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:6000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:1},
+                   1:{targetAxisIndex:0},
+                  },
+      };
+
     function resize() {
-      var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
 
-      chart2.draw(view, google.charts.Line.convertOptions(options));
-    }
+      var daily_chart = new google.charts.Line(document.getElementById('daily_chart'));
+      var county_chart2 = new google.charts.Line(document.getElementById('county_chart'));
 
-    window.onload = resize();
-    window.onresize = resize;
+      daily_chart.draw(daily_view, google.charts.Line.convertOptions(daily_options));
+      county_chart.draw(county_view, google.charts.Line.convertOptions(county_options));
+  }
+  window.onload = resize();
+  window.onresize = resize;
 
   });
 }
@@ -129,20 +162,9 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-  <div id="14_day_chart"></div>
+  <div id="daily_chart"></div>
   <div class="w3-container">
-
-      <p>
-        This chart shows the number of new cases in Montgomery and Philadelphia County over the last 14 days.
-        <br> <strong style="color:Red"><b>NOTE: MontCo Numbers on the left axis, and Philly on the right.</b></strong>
-      </p>
-      <p>
-        This chart is motivated by the state's guidance that counties "having fewer than 50 new confirmed cases per 100,000 population reported to the department in the previous 14 days" will be able to begin the return to normal lifestyle. 
-      </p>
-
-      <p>
-      The "goal" line will show where we need to get for these counties to re-open.
-      </p>
+  <div id="county_chart"></div>
   </div> 
     </div>
   </div>
