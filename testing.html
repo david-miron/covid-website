@@ -116,7 +116,7 @@ function drawChart() {
     function resize() {
 
       var daily_chart = new google.charts.Line(document.getElementById('daily_chart'));
-      var county_chart2 = new google.charts.Line(document.getElementById('county_chart'));
+      var county_chart = new google.charts.Line(document.getElementById('county_chart'));
 
       daily_chart.draw(daily_view, google.charts.Line.convertOptions(daily_options));
       county_chart.draw(county_view, google.charts.Line.convertOptions(county_options));
