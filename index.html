@@ -41,7 +41,7 @@ var ax = $.csv;   // <<< --- this change $.csv for ax !!!
 // this has to be a global function
 function drawChart() {
    // grab the CSV
-   $.get("data/14_day_chart.csv", function(csvString) {
+   $.get("data/master_table.csv", function(csvString) {
       // transform the CSV string into a 2-dimensional array
       var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
 
@@ -50,7 +50,7 @@ function drawChart() {
 
       // this view can select a subset of the data at a time
       var view = new google.visualization.DataView(data);
-      view.setColumns([0,2,3,5,6]);
+      view.setColumns([0,13,15,14,16]);
 
      var options = {
         colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
@@ -96,48 +96,43 @@ function drawChart() {
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" language="javascript">
 // Load google charts
-google.charts.load('current', {'packages':['line']});
 google.charts.load('current', {'packages':['table']});
 google.charts.setOnLoadCallback(drawTable);
+console.log($.csv);
+var ax = $.csv;   // <<< --- this change $.csv for ax !!!
 
-      function drawTable(data) {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Date');
-        data.addColumn('number', 'Tests');
-        data.addColumn('number', 'Positives');
-        data.addColumn('number', 'Deaths');
-        data.addColumn('number', 'Total Deaths');
-        data.addRows([
-          ['5.13.20', 6889, 707, 137, 3943],
-          ['5.12.20', 7122, 837, 75, 3806],
-          ['5.11.20', 4475, 543, 24, 3731],
-          ['5.10.20', 7276, 1295, 19, 3707],
-          ['5.09.20', 6638, 1078, 72, 3688],
-          ['5.08.20', 7681, 1323, 200, 3616],
-          ['5.07.20', 6448, 1070, 310, 3416],
-          ['5.06.20', 5458, 888, 94, 3106],
-          ['5.05.20', 5292, 865, 554, 3012],
-          ['5.04.20', 4949, 825, 14, 2458],
-          ['5.03.20', 5265, 962, 26, 2444],
-          ['5.02.20', 7928, 1334, 64, 2418],
-          ['5.01.20', 6083, 1208, 62, 2354],
-          ['4.30.20', 6482, 1397, 97, 2292],
-        ]);
+function drawTable(data) {
+
+        // grab the CSV
+      $.get("data/master_table.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
+
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
+
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,4,6,8,3]);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
 
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-      }
+        table.draw(view, {showRowNumber: false, width: '100%', height: '100%'});
+    
         
   function resize() {
 
-    var chart = new google.charts.Line(document.getElementById('table_div'));
+    var table = new google.visualization.Table(document.getElementById('table_div'));
 
-    chart.draw(data, google.charts.Line.convertOptions(options));
+    table.draw(view, {showRowNumber: false, startPage: 7, page: 'enable',  width: '100%', height: '100%'});
   }
+
   window.onload = resize();
   window.onresize = resize;
-      
+
+});
+}
+
 </script>
 
 <style>
