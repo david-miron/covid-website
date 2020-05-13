@@ -33,6 +33,8 @@
 <script type="text/javascript">
 // load the visualization library from Google and set a listener
 google.charts.load('current', {'packages':['line']});
+google.charts.load('current', {'packages':['table']});
+google.charts.setOnLoadCallback(drawTable);
 google.charts.setOnLoadCallback(drawChart);
 
 console.log($.csv);
@@ -89,19 +91,9 @@ function drawChart() {
     window.onresize = resize;
 
   });
-}
+  }
 
-</script>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" language="javascript">
-// Load google charts
-google.charts.load('current', {'packages':['table']});
-google.charts.setOnLoadCallback(drawTable);
-console.log($.csv);
-var ax = $.csv;   // <<< --- this change $.csv for ax !!!
-
-function drawTable(data) {
+  function drawTable(data) {
 
         // grab the CSV
       $.get("data/master_table.csv", function(csvString) {
