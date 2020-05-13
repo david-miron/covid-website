@@ -32,6 +32,8 @@
 <script type="text/javascript">
 // load the visualization library from Google and set a listener
 google.charts.load('current', {'packages':['line']});
+google.charts.load('current', {'packages':['table']});
+google.charts.setOnLoadCallback(drawTable);
 google.charts.setOnLoadCallback(drawChart);
 
 console.log($.csv);
@@ -88,6 +90,38 @@ function drawChart() {
     window.onresize = resize;
 
   });
+  }
+
+  function drawTable(data) {
+
+        // grab the CSV
+      $.get("data/master_table.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
+
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
+
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,4,6,8,3]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(view, {showRowNumber: false, width: '100%', height: '100%'});
+    
+        
+  function resize() {
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+
+    table.draw(view, {showRowNumber: false, startPage: 7, page: 'enable',  width: '100%', height: '100%'});
+  }
+
+  window.onload = resize();
+  window.onresize = resize;
+
+});
 }
 
 </script>
@@ -122,6 +156,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
+  <div id="14_day_chart"></div>
   <div id="table_div"></div>
   </div> 
     </div>
