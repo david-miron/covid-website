@@ -54,6 +54,10 @@ function drawChart() {
       var county_view = new google.visualization.DataView(data);
       county_view.setColumns([0,10,12]);
 
+      // this view can select a subset of the data at a time
+      var state_view = new google.visualization.DataView(data);
+      daily_view.setColumns([0,17,18]);
+
      var daily_options = {
         legend: { position: 'bottom' },
         chart: {
@@ -85,11 +89,40 @@ function drawChart() {
                   },
       };
 
+      var state_options = {
+        legend: { position: 'bottom' },
+        chart: {
+          title: '14 Day Total of Deaths and Postives',
+          subtitle: 'NOTE: Deaths and Positives plotted on different axis',
+          isStacked: "true"
+        },
+        width: "100%",
+        height: 500,
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:2500,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:25000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:0},
+                   1:{targetAxisIndex:1},
+                  },
+      };
+
       var county_options = {
         colors: ['#6eeb34', '#8113e8'],
         chart: {
           title: 'Daily Positive Cases Montgomery and Philadelphia County',
-          subtitle: 'NOTE: Philadelphia on left axis, Montgomery on right'
+          subtitle: 'NOTE: Philadelphia and Montgomery on different axis'
         },
         width: "100%",
         height: 500,
@@ -117,9 +150,11 @@ function drawChart() {
 
       var daily_chart = new google.charts.Line(document.getElementById('daily_chart'));
       var county_chart = new google.charts.Line(document.getElementById('county_chart'));
+      var state_chart = new google.charts.Line(document.getElementById('state_chart'));
 
       daily_chart.draw(daily_view, google.charts.Line.convertOptions(daily_options));
       county_chart.draw(county_view, google.charts.Line.convertOptions(county_options));
+      state_chart.draw(state_view, google.charts.Line.convertOptions(state_options));
   }
   window.onload = resize();
   window.onresize = resize;
@@ -146,6 +181,12 @@ and is wrapped around the whole page content, except for the footer in this exam
         <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/00bd7d163117479c84da5405f25e2cdb">Mobile</a> </center></b></h4>
 </header>
   
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="state_chart"></div>
+    </div>
+  </div>
+
   <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
   <div id="daily_chart"></div>
