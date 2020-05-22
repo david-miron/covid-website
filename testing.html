@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162707788-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162707788-1');
+</script>
+</head>
+<title>COVID-19 in Pennsylvania</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>ArcGIS Dashboards</title>
+<meta name="description" content>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://js.arcgis.com/3.32/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css">
+<link href="https://js.arcgis.com/3.32/esri/css/esri.css" rel="stylesheet" type="text/css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+// load the visualization library from Google and set a listener
+google.charts.load('current', {'packages':['line']});
+google.charts.load('current', {'packages':['table']});
+google.charts.load('current', {'packages':['contols', 'corechart']});
+google.charts.setOnLoadCallback(drawTable);
+google.charts.setOnLoadCallback(drawChart);
+
+console.log($.csv);
+var ax = $.csv;   // <<< --- this change $.csv for ax !!!
+
+// this has to be a global function
+function drawChart() {
+   // grab the CSV
+   $.get("data/master_table.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
+
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
+
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,13,15,14,16]);
+
+     var options = {
+        colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
+        chart: {
+          title: 'New Cases in Past 14 Days',
+        },
+        width: "100%",
+        height: 500,
+        vAxes: {  0: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:6000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  1: {viewWindowMode:'explicit',
+                      viewWindow:{
+                                  max:2000,
+                                  min:0
+                                  },
+                      gridlines: {color: 'transparent'},
+                      },
+                  },
+                  series: {0: {targetAxisIndex:1},
+                   1:{targetAxisIndex:1},
+                  },
+      };
+
+    var dashboard = new google.visualization.Dashboard(
+            document.getElementById('dashboard_div'));
+
+    function resize() {
+      // var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
+      var chart2 = new google.visualization.ChartWrapper(document.getElementById('14_day_chart'));
+
+      dashboard.bind(chart2);
+
+      chart2.draw(view, google.charts.Line.convertOptions(options));
+    }
+
+    window.onload = resize();
+    window.onresize = resize;
+
+  });
+  }
+
+  function drawTable(data) {
+
+        // grab the CSV
+      $.get("data/master_table.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
+
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
+
+      // this view can select a subset of the data at a time
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,4,6,8,3]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(view, {showRowNumber: false, width: '100%', height: '100%'});
+    
+        
+  function resize() {
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+
+    table.draw(view, {showRowNumber: false, startPage: 7, page: 'enable',  width: '100%', height: '100%'});
+  }
+
+  window.onload = resize();
+  window.onresize = resize;
+
+});
+}
+
+</script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Tracking COVID-19 in Pennsylvania</b></h1>
+  <p>Created by <span class="w3-tag"><a style="color:white" href="https://www.linkedin.com/in/david-miron/">David Miron</a></span></p>
+  <center><h5>Page last updated on, <span class="w3-opacity">May 21, 2020</span></h5></center>
+  <h4 style="color:DodgerBlue"><b><center> <a href="https://pa-covid19.com/charts">Charts</a> &nbsp;&nbsp; <a href="https://pa-covid19.com/archive">Archive</a> <br> <a href="https://www.governor.pa.gov/process-to-reopen-pennsylvania/">Process to Reopen Pennsylvania</a> <br> Hospital Data: <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85054b06472e4208b02285b8557f24cf">Desktop</a>
+        <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/00bd7d163117479c84da5405f25e2cdb">Mobile</a> </center></b></h4>
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+      
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
+  </div>
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+  <div id="14_day_chart"></div>
+  <div class="w3-container">
+
+      <p>
+        This chart shows the number of new cases in Montgomery and Philadelphia County over the last 14 days.
+        <br> <strong style="color:Red"><b>NOTE: MontCo Numbers on the left axis, and Philly on the right.</b></strong>
+      </p>
+      <p>
+        This chart is motivated by the state's guidance that counties "having fewer than 50 new confirmed cases per 100,000 population reported to the department in the previous 14 days" will be able to begin the return to normal lifestyle. 
+      </p>
+
+      <p>
+      The "goal" line will show where we need to get for these counties to re-open.
+      </p>
+  </div> 
+    </div>
+  </div>
+
+
+<!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 61 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 21, 2020</span></h5>
+    </div>
+
+    <div id="table_div"></div>
+
+    <div class="w3-container">
+
+      <p> 
+        The state continues to change how they are tracking and maintaing data. Nursing Homes and Personal Care Homes data is now broken down by homes and can be found, updated daily, at the bottom of <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">this page</a>, and today's update can be found <a href="https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20LTCF%20Data_5-19-20.pdf">here</a>.
+        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <h3><b>Clickable County Map</b></h3>
+    </div>
+    <div class="w3-container">
+      <iframe width= 100% height="640" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+src="https://experience.arcgis.com/experience/bc92e33cfd5d417795f7a7a1a5cb3b1d/"></iframe>
+    </div>
+  </div>
+
+<!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 60 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 20, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+
+      <p> 
+        The state continues to change how they are tracking and maintaing data. Nursing Homes and Personal Care Homes data is now broken down by homes and can be found, updated daily, at the bottom of <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">this page</a>, and today's update can be found <a href="https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20LTCF%20Data_5-19-20.pdf">here</a>.
+        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
+
+    </div>
+  </div>
+
+<!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 59 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 19, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+
+      <p> 
+        37 counties are in the yellow, while 12 more will be entering the yellow phase on May 22nd. This will leave just 18 counties, but the majority of the population in the red phase. The state has updated how they will report deaths. From now on deaths will be based on "... the deceased person’s county of residence, instead of listing them based on the county where they were receiving hospital treatment or were living in a nursing home at the the time of death" <a href="https://www.penncapital-star.com/blog/levine-new-count-of-covid-19-fatalities-will-yield-more-accurate-tally/">Source</a>. 
+        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
+
+    </div>
+  </div>
+
+<!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+ -->    <div class="w3-container">
+      <h3><b>Day 58 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 18, 2020</span></h5>
+    </div>
+
+    <div class="w3-container">
+
+      <p> 
+        Since Friday 2434 postive cases and 163 deaths have been reported.
+        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+
+      <p>
+        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
+      </p>
+
+    </div>
+  </div>
+
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="./assets/headshot1.jpg" style="width:10%">
+    <div class="w3-container w3-white">
+      <h4><b>David Miron</b></h4>
+      <p>For any questions, comments or corrections please email david@miron.us</p>
+      <p>As I am quarantined in PA, I have been tracking the development of COVID-19 in the state. All data is pulled from <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">health.pa.gov</a> on a daily basis. All opinions are my own. This website is mainly to serve as a place for organizing findings and data.</p>
+    </div>
+  </div><hr>
+  
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Helpful Links</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">PA Tracking</span><br>
+        <span><a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">health.pa.gov</a></span>
+      </li>
+      
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">PA COVID19 Projections</span><br>
+        <span><a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Data-Animations.aspx">PA Trajectory Animations</a>  </span>
+      </li> 
+
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">US Tracking Data</span><br>
+        <span><a href="https://covidtracking.com/">COVID Tracking Project</a></span>
+      </li> 
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">US Surveillance Dashboard</span><br>
+        <span><a href=http://ncov.bii.virginia.edu/dashboard/>UVA Biocomplexity Institute</a></span>
+      </li>   
+      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+<!--         <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Tracking Mobility Using Smart Phone Data</span><br>
+        <span><a href=https://www.unacast.com/covid19/social-distancing-scoreboard/>Unacast (scroll down and select PA)</a></span>
+      </li>  
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Median Age by County in PA</span><br>
+        <span><a href="  https://mapmaker2.millersville.edu/pamaps/MedianAge/">Millersville University</a></span>
+      </li>
+      <li class="w3-padding-16">
+<!--         <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+ -->        <span class="w3-large">Raw Data County + State</span><br>
+        <span><a href="https://github.com/nytimes/covid-19-data">New York Times</a></span>
+      </li>
+    </ul>
+  </div>
+  <hr> 
+ 
+  <!-- Labels / tags -->
+<!--   <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+    </p>
+    </div>
+  </div> -->
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <!-- <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button> -->
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
+</html>
