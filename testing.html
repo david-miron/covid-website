@@ -85,11 +85,40 @@ function drawChart() {
 
     function resize() {
       // var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
-      var chart2 = new google.visualization.ChartWrapper(document.getElementById('14_day_chart'));
+      var chart2 = new google.visualization.ChartWrapper({
+        'chartType': 'LineChart',
+        'containerId': '14_day_chart',
+        'options' = {
+        'colors': ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
+        'chart': {
+          'title': 'New Cases in Past 14 Days',
+        },
+        'width': "100%",
+        'height': 500,
+        'vAxes': {  0: {'viewWindowMode':'explicit',
+                      'viewWindow':{
+                                  'max':6000,
+                                  'min':0
+                                  },
+                      'gridlines': {'color': 'transparent'},
+                      },
+                  1: {'viewWindowMode':'explicit',
+                      'viewWindow':{
+                                  'max':2000,
+                                  'min':0
+                                  },
+                      'gridlines': {'color': 'transparent'},
+                      },
+                  },
+                  'series': {0: {'targetAxisIndex':1},
+                   1:{'targetAxisIndex':1},
+                  }
+        }
+      });
 
       dashboard.bind(chart2);
 
-      chart2.draw(view, google.charts.Line.convertOptions(options));
+      chart2.draw(view);
     }
 
     window.onload = resize();
