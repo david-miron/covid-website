@@ -92,27 +92,7 @@ function drawChart() {
         'colors': ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
         'chart': {
           'title': 'New Cases in Past 14 Days',
-        },
-        'width': "100%",
-        'height': 500,
-        'vAxes': {  0: {'viewWindowMode':'explicit',
-                      'viewWindow':{
-                                  'max':6000,
-                                  'min':0
-                                  },
-                      'gridlines': {'color': 'transparent'},
-                      },
-                  1: {'viewWindowMode':'explicit',
-                      'viewWindow':{
-                                  'max':2000,
-                                  'min':0
-                                  },
-                      'gridlines': {'color': 'transparent'},
-                      },
-                  },
-                  'series': {0: {'targetAxisIndex':1},
-                   1:{'targetAxisIndex':1},
-                  }
+        }
         }
       });
 
@@ -194,7 +174,7 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div id="dashboard_div">
       <!--Divs that will hold each control and chart-->
       <div id="14_day_chart"></div>
-    </div>
+  </div>
   <div class="w3-container">
 
       <p>
