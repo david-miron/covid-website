@@ -31,114 +31,86 @@
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-// load the visualization library from Google and set a listener
-google.charts.load('current', {'packages':['corechart', 'controls']});
-google.charts.setOnLoadCallback(drawTable);
-google.charts.setOnLoadCallback(drawChart);
+  google.charts.load('current', {packages:['corechart', 'table', 'gauge', 'controls']});
+  google.charts.setOnLoadCallback(drawChartRangeFilter);
 
-console.log($.csv);
-var ax = $.csv;   // <<< --- this change $.csv for ax !!!
-
-// this has to be a global function
-function drawChart() {
-   // grab the CSV
-   $.get("data/master_table.csv", function(csvString) {
-      // transform the CSV string into a 2-dimensional array
-      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
-
-      // this new DataTable object holds all the data
-      var data = new google.visualization.arrayToDataTable(arrayData);
-
-      // this view can select a subset of the data at a time
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0,13,15,14,16]);
-
-     var options = {
-        colors: ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
-        chart: {
-          title: 'New Cases in Past 14 Days',
-        },
-        width: "100%",
-        height: 500,
-        vAxes: {  0: {viewWindowMode:'explicit',
-                      viewWindow:{
-                                  max:6000,
-                                  min:0
-                                  },
-                      gridlines: {color: 'transparent'},
-                      },
-                  1: {viewWindowMode:'explicit',
-                      viewWindow:{
-                                  max:2000,
-                                  min:0
-                                  },
-                      gridlines: {color: 'transparent'},
-                      },
-                  },
-                  series: {0: {targetAxisIndex:1},
-                   1:{targetAxisIndex:1},
-                  },
-      };
+  function drawChartRangeFilter() {
 
     var dashboard = new google.visualization.Dashboard(
-            document.getElementById('dashboard_div'));
+        document.getElementById('chartRangeFilter_dashboard_div'));
 
-    function resize() {
-      // var chart2 = new google.charts.Line(document.getElementById('14_day_chart'));
-      var chart2 = new google.visualization.ChartWrapper({
-        'chartType': 'LineChart',
-        'containerId': '14_day_chart',
-        'options': {
-        'colors': ['#6eeb34', "#7beb47", '#8113e8', "#9c43ef"],
-        'chart': {
-          'title': 'New Cases in Past 14 Days',
+    var control = new google.visualization.ControlWrapper({
+      'controlType': 'ChartRangeFilter',
+      'containerId': 'chartRangeFilter_control_div',
+      'options': {
+        // Filter by the date axis.
+        'filterColumnIndex': 0,
+        'ui': {
+          'chartType': 'LineChart',
+          'chartOptions': {
+            'chartArea': {'width': '90%'},
+            'hAxis': {'baselineColor': 'none'}
+          },
+          // Display a single series that shows the closing value of the stock.
+          // Thus, this view has two columns: the date (axis) and the stock value (line series).
+          'chartView': {
+            'columns': [0, 3]
+          },
+          // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
+          'minRangeSize': 86400000
         }
-        }
-      });
+      },
+      // Initial range: 2012-02-09 to 2012-03-20.
+      'state': {'range': {'start': new Date(2012, 1, 9), 'end': new Date(2012, 2, 20)}}
+    });
 
-      dashboard.bind(chart2);
+    var chart = new google.visualization.ChartWrapper({
+      'chartType': 'CandlestickChart',
+      'containerId': 'chartRangeFilter_chart_div',
+      'options': {
+        // Use the same chart area width as the control for axis alignment.
+        'chartArea': {'height': '80%', 'width': '90%'},
+        'hAxis': {'slantedText': false},
+        'vAxis': {'viewWindow': {'min': 0, 'max': 2000}},
+        'legend': {'position': 'none'}
+      },
+      // Convert the first column from 'date' to 'string'.
+      'view': {
+        'columns': [
+          {
+            'calc': function(dataTable, rowIndex) {
+              return dataTable.getFormattedValue(rowIndex, 0);
+            },
+            'type': 'string'
+          }, 1, 2, 3, 4]
+      }
+    });
 
-      chart2.draw(view);
+    var data = new google.visualization.DataTable();
+    data.addColumn('date', 'Date');
+    data.addColumn('number', 'Stock low');
+    data.addColumn('number', 'Stock open');
+    data.addColumn('number', 'Stock close');
+    data.addColumn('number', 'Stock high');
+
+    // Create random stock values, just like it works in reality.
+    var open, close = 300;
+    var low, high;
+    for (var day = 1; day < 121; ++day) {
+      var change = (Math.sin(day / 2.5 + Math.PI) + Math.sin(day / 3) - Math.cos(day * 0.7)) * 150;
+      change = change >= 0 ? change + 10 : change - 10;
+      open = close;
+      close = Math.max(50, open + change);
+      low = Math.min(open, close) - (Math.cos(day * 1.7) + 1) * 15;
+      low = Math.max(0, low);
+      high = Math.max(open, close) + (Math.cos(day * 1.3) + 1) * 15;
+      var date = new Date(2012, 0 ,day);
+      data.addRow([date, Math.round(low), Math.round(open), Math.round(close), Math.round(high)]);
     }
 
-    window.onload = resize();
-    window.onresize = resize;
-
-  });
+    dashboard.bind(control, chart);
+    dashboard.draw(data);
   }
-
-  function drawTable(data) {
-
-        // grab the CSV
-      $.get("data/master_table.csv", function(csvString) {
-      // transform the CSV string into a 2-dimensional array
-      var arrayData = ax.toArrays(csvString, {onParseValue: ax.hooks.castToScalar});
-
-      // this new DataTable object holds all the data
-      var data = new google.visualization.arrayToDataTable(arrayData);
-
-      // this view can select a subset of the data at a time
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0,4,6,8,3]);
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(view, {showRowNumber: false, width: '100%', height: '100%'});
-    
-        
-  function resize() {
-
-    var table = new google.visualization.Table(document.getElementById('table_div'));
-
-    table.draw(view, {showRowNumber: false, startPage: 7, page: 'enable',  width: '100%', height: '100%'});
-  }
-
-  window.onload = resize();
-  window.onresize = resize;
-
-});
-}
-
 </script>
 
 <style>
@@ -171,9 +143,10 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-  <div id="dashboard_div">
+  <div id="chartRangeFilter_dashboard_div">
       <!--Divs that will hold each control and chart-->
-      <div id="14_day_chart"></div>
+      <div id="chartRangeFilter_control_div"></div>
+      <div id="chartRangeFilter_chart_div"></div>
   </div>
   <div class="w3-container">
 
