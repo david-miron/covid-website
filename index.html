@@ -116,7 +116,7 @@ function drawChart() {
 
     var table = new google.visualization.Table(document.getElementById('table_div'));
 
-    table.draw(view, {showRowNumber: false, startPage: 7, page: 'enable',  width: '100%', height: '100%'});
+    table.draw(view, {showRowNumber: false, startPage: 9, page: 'enable',  width: '100%', height: '100%'});
   }
 
   window.onload = resize();
@@ -140,7 +140,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <header class="w3-container w3-center w3-padding-32"> 
   <h1><b>Tracking COVID-19 in Pennsylvania</b></h1>
   <p>Created by <span class="w3-tag"><a style="color:white" href="https://www.linkedin.com/in/david-miron/">David Miron</a></span></p>
-  <center><h5>Page last updated on, <span class="w3-opacity">May 22, 2020</span></h5></center>
+  <center><h5>Page last updated on, <span class="w3-opacity">May 26, 2020</span></h5></center>
   <h4 style="color:DodgerBlue"><b><center> <a href="https://pa-covid19.com/charts">Charts</a> &nbsp;&nbsp; <a href="https://pa-covid19.com/archive">Archive</a> <br> <a href="https://www.governor.pa.gov/process-to-reopen-pennsylvania/">Process to Reopen Pennsylvania</a> <br> Hospital Data: <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85054b06472e4208b02285b8557f24cf">Desktop</a>
         <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/00bd7d163117479c84da5405f25e2cdb">Mobile</a> </center></b></h4>
 </header>
@@ -162,7 +162,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
       <p>
         This chart shows the number of new cases in Montgomery and Philadelphia County over the last 14 days.
-        <br> <strong style="color:Red"><b>NOTE: MontCo Numbers on the left axis, and Philly on the right.</b></strong>
+        <br> <h4 style="color:Red"> <strong ><b>NOTE: MontCo Numbers on the left axis, and Philly on the right.</b></strong></h4>
       </p>
       <p>
         This chart is motivated by the state's guidance that counties "having fewer than 50 new confirmed cases per 100,000 population reported to the department in the previous 14 days" will be able to begin the return to normal lifestyle. 
@@ -180,8 +180,8 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
-      <h3><b>Day 62 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 22, 2020</span></h5>
+      <h3><b>Day 66 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 26, 2020</span></h5>
     </div>
 
     <div id="table_div"></div>
@@ -189,8 +189,9 @@ and is wrapped around the whole page content, except for the footer in this exam
     <div class="w3-container">
 
       <p> 
-        New information has been released by the state in regard to recovery. According to the state, 57% of all patients have recovered. NOTE: "Individuals who have recovered is determined using a calculation, similar to what is being done by several other states. If a case has not been reported as a death, and it is more than 30 days past the date of their first positive test (or onset of symptoms) then an individual is considered recovered." <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">(Source)</a>
-        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
+        
+        The governor has announced that all counties will be, at a minimum, in the Yellow stage startin June 2nd. 17 counties will transition to the Green stage on June 8th. Those counties moving to Green are Bradford, Cameron, Clarion, Clearfield, Crawford, Elk, Forest, Jefferson, Lawrence, McKean, Montour, Potter, Snyder, Sullivan, Tioga, Venango and Warren. Since Friday there have been 29k tests reported. 8% of those tests were positive. There were also 168 deaths reported. The 14 day running total on deaths is beginning to trend down. See more on the charts page.
+        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-adds-eight-counties-to-yellow-and-17-to-green-on-may-29-remainder-to-yellow-on-june-5/">17 counties to Green on May 29th and remainder to Yellow on June 5th</a>. </p>
 
       <p>
         The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
@@ -214,8 +215,8 @@ src="https://experience.arcgis.com/experience/bc92e33cfd5d417795f7a7a1a5cb3b1d/"
   <div class="w3-card-4 w3-margin w3-white">
 <!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
  -->    <div class="w3-container">
-      <h3><b>Day 61 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 21, 2020</span></h5>
+      <h3><b>Day 62 of Tracking</b></h3>
+      <h5>Daily Update, <span class="w3-opacity">May 22, 2020</span></h5>
     </div>
 
     <div id="table_div"></div>
@@ -223,70 +224,7 @@ src="https://experience.arcgis.com/experience/bc92e33cfd5d417795f7a7a1a5cb3b1d/"
     <div class="w3-container">
 
       <p> 
-        The state continues to change how they are tracking and maintaing data. Nursing Homes and Personal Care Homes data is now broken down by homes and can be found, updated daily, at the bottom of <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">this page</a>, and today's update can be found <a href="https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20LTCF%20Data_5-19-20.pdf">here</a>.
-        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
-
-      <p>
-        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
-      </p>
-
-    </div>
-  </div>
-
-<!-- Blog entry -->
-  <div class="w3-card-4 w3-margin w3-white">
-<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
- -->    <div class="w3-container">
-      <h3><b>Day 60 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 20, 2020</span></h5>
-    </div>
-
-    <div class="w3-container">
-
-      <p> 
-        The state continues to change how they are tracking and maintaing data. Nursing Homes and Personal Care Homes data is now broken down by homes and can be found, updated daily, at the bottom of <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">this page</a>, and today's update can be found <a href="https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20LTCF%20Data_5-19-20.pdf">here</a>.
-        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
-
-      <p>
-        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
-      </p>
-
-    </div>
-  </div>
-
-<!-- Blog entry -->
-  <div class="w3-card-4 w3-margin w3-white">
-<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
- -->    <div class="w3-container">
-      <h3><b>Day 59 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 19, 2020</span></h5>
-    </div>
-
-    <div class="w3-container">
-
-      <p> 
-        37 counties are in the yellow, while 12 more will be entering the yellow phase on May 22nd. This will leave just 18 counties, but the majority of the population in the red phase. The state has updated how they will report deaths. From now on deaths will be based on "... the deceased person’s county of residence, instead of listing them based on the county where they were receiving hospital treatment or were living in a nursing home at the the time of death" <a href="https://www.penncapital-star.com/blog/levine-new-count-of-covid-19-fatalities-will-yield-more-accurate-tally/">Source</a>. 
-        <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
-
-      <p>
-        The state has realeased guidlines for reopening in a 3 phase plan. You can read more about this plan here: <a href="https://www.pa.gov/guides/responding-to-covid-19/#PhasedReopening">PA 3-Phase Plan</a>.
-      </p>
-
-    </div>
-  </div>
-
-<!-- Blog entry -->
-  <div class="w3-card-4 w3-margin w3-white">
-<!--   <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
- -->    <div class="w3-container">
-      <h3><b>Day 58 of Tracking</b></h3>
-      <h5>Daily Update, <span class="w3-opacity">May 18, 2020</span></h5>
-    </div>
-
-    <div class="w3-container">
-
-      <p> 
-        Since Friday 2434 postive cases and 163 deaths have been reported.
+        New information has been released by the state in regard to recovery. According to the state, 57% of all patients have recovered. NOTE: "Individuals who have recovered is determined using a calculation, similar to what is being done by several other states. If a case has not been reported as a death, and it is more than 30 days past the date of their first positive test (or onset of symptoms) then an individual is considered recovered." <a href="https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx">(Source)</a>
         <a href="https://www.governor.pa.gov/newsroom/gov-wolf-announces-reopening-of-24-counties-beginning-may-8/">24 Counties Reopening May 8th</a>. </p>
 
       <p>
