@@ -22,10 +22,10 @@ def main():
 		if info in counties:
 			data[info+'_positive'] = int(f_load[i+1]['text'])
 			data[info+'_negative'] = int(f_load[i+2]['text'])
-			data[info+'_deaths'] = int(f_load[i+3]['text'])
+			data[info+'_deaths'] = 0
 			counties.remove(info)
 
-		if info == 'Negative' and i < 50:
+		if info == 'Recovered***' and i < 50:
 			data['Total_Positive'] = int(f_load[i+1]['text'].replace(",", ""))
 			data['Total_Deaths'] = int(f_load[i+2]['text'].replace(",", ""))
 			data['Total_Negative'] = int(f_load[i+3]['text'].replace(",", ""))
@@ -45,8 +45,8 @@ def main():
 	philly_new = data['Philadelphia_positive'] - int(master_table.loc[days]['Philadelphia County Positives'])
 	montco_14 = data['Montgomery_positive'] - int(master_table.loc[days-12]['Montgomery County Positives'])
 	philly_14 = data['Philadelphia_positive'] - int(master_table.loc[days-12]['Philadelphia County Positives'])
-	pa_14_deaths = data['Total_Deaths'] - int(master_table.loc[days-12]['PA 14 Day Deaths']) 
-	pa_14_postives = data['Total_Positive'] - int(master_table.loc[days-12]['PA 14 Day Positives']) 
+	pa_14_deaths = data['Total_Deaths'] - int(master_table.loc[days-12]['Total Deaths']) 
+	pa_14_postives = data['Total_Positive'] - int(master_table.loc[days-12]['Total Positive']) 
 
 	new_row = [[dt, data['Total_Positive'], data['Total_Negative'], data['Total_Deaths'], tests, percent_positive, positive, negative, deaths, \
 		 data['Montgomery_positive'], montco_new, data['Philadelphia_positive'], philly_new, montco_14, philly_14, 414, 792, pa_14_deaths, pa_14_postives]]
